@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route } from 'react-router-dom';
+import { VIEWS } from './components/Routing/All';
+import PrivateView from './components/Views/Controller/Private';
+import PublicView from './components/Views/Controller/Public';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Switch>
+        {VIEWS.map( (view, i) => {
+
+          var route = view.isProtected ?
+                      <PrivateView view={view} /> :
+                      <PublicView  view={view} />
+
+          return (
+            <Route
+              exact
+              path={view.path}
+              key={i}
+              render={() => route}
+            />
+          );
+
+        })}
+      </Switch>
+    </>
   );
 }
 
