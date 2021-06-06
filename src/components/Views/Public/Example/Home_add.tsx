@@ -9,23 +9,17 @@ export default function HomeAdd() {
 
   function submit(e : Submit) {
     e.preventDefault();
+
     addComida(comida)
     .then(result => {
       if(result.isFailed) alert('error post')
       if(result.isLoading) alert('posting')
-
-      if(result.data) {
-        alert('posted') 
-        console.log(result.data);
-      }
-
+      if(result.data) console.log(result.data)
     })
+
   }
 
   return (
-    
-
-      
     <form onSubmit={submit}>
 
       <input placeholder="nombre" value={comida.nombre} onChange={(e) => setComida({...comida, nombre: e.target.value})} />

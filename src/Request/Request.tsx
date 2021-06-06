@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { PARAMS } from './Request.i';
 
-const BASE_URL = "http://localhost:8080/clases_ophyra/old-schema/blog-api";
+const BASE_URL = "https://127.0.0.1:8000";
 const UN_ERROR = {
   status: 500,
   data: {data: []}
@@ -48,10 +48,9 @@ async function getAll<T>({uri, headers = {}, params = {}} : PARAMS) : Promise<Ax
 
 async function Request<T>({uri, method, data={}, headers = {}, params = {}} : PARAMS) : Promise<AxiosResponse<T>>
 {
-
   try {
     let response = await axios({
-      url: BASE_URL + uri,
+      url: `${BASE_URL}/${uri}`,
       method: method,
       headers: headers,
       params: params,

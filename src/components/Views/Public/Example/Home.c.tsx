@@ -14,7 +14,7 @@ function getComida(): Promise<RequestReturn<ComidaType[]>>
   return getRequest<ComidaType[]>({
     event: 'GET',
     config: {
-      uri: 'Blog'
+      uri: 'comida'
     }
   });
 }
@@ -24,7 +24,7 @@ function addComida(comida:ComidaType): Promise<RequestReturn<ComidaType>> {
     event: 'POST',
     config: {
       method: 'POST',
-      uri: 'Blog',
+      uri: 'comida',
       data: comida
     }
   });
